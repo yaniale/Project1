@@ -12,5 +12,12 @@
     width: 50px;
     height: 100px;
     background-color: blue;
-    
+}
+
+#cow {
+    position: absolute;
+    top: 0;
+    width: 70px;
+    height: 40px;
+    background-color: grey;
 }

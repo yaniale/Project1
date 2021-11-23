@@ -1,27 +1,30 @@
 const farmer = document.getElementById('farmer')
 const canvas = document.getElementById('canvas')
-var farmerPos = 0
+const cow = document.getElementById('cow')
 
-function moveFarmerRight() {
-    if (farmerPos <= 740) { // que calcule según el ancho del farmer
-        farmerPos += 10
-        farmer.style.left = farmerPos + 'px'
+function Farmer() {
+    this.farmerPos = 0
+
+    this.moveFarmerRight = function() {
+        if (this.farmerPos <= 740) { // que calcule según el ancho del farmer
+            this.farmerPos += 10
+            farmer.style.left = this.farmerPos + 'px'
+        }
     }
+    this.moveFarmerLeft = function() {
+        if (this.farmerPos >= 10) {
+            this.farmerPos -= 10
+            farmer.style.left = this.farmerPos + 'px'
+        }
+    }
+    window.addEventListener('keydown', function (event) {
+        if (event.code === 'ArrowRight') {
+            moveFarmerRight()
+        }
+        if (event.code === 'ArrowLeft') {
+            moveFarmerLeft()
+        }
+    })
 }
 
-function moveFarmerLeft() {
-    if (farmerPos >= 10) {
-        farmerPos -= 10
-        farmer.style.left = farmerPos + 'px'
-    }
-}
-
-window.addEventListener('keydown', function (event) {
-    if (event.code === 'ArrowRight') {
-        moveFarmerRight()
-    }
-    if (event.code === 'ArrowLeft') {
-        moveFarmerLeft()
-    }
-})
-
+Farmer()
