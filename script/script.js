@@ -1,30 +1,32 @@
-const farmer = document.getElementById('farmer')
+
 const canvas = document.getElementById('canvas')
-const cow = document.getElementById('cow')
+const farmer = new Farmer()
+const cow = new Cow()
 
-function Farmer() {
-    this.farmerPos = 0
+window.addEventListener('keydown', function (event) {
+    if (event.code === 'ArrowRight') {
+        farmer.moveRight()
+    }
+    if (event.code === 'ArrowLeft') {
+        farmer.moveLeft()
+    }
+})
 
-    this.moveFarmerRight = function() {
-        if (this.farmerPos <= 740) { // que calcule según el ancho del farmer
-            this.farmerPos += 10
-            farmer.style.left = this.farmerPos + 'px'
-        }
-    }
-    this.moveFarmerLeft = function() {
-        if (this.farmerPos >= 10) {
-            this.farmerPos -= 10
-            farmer.style.left = this.farmerPos + 'px'
-        }
-    }
-    window.addEventListener('keydown', function (event) {
-        if (event.code === 'ArrowRight') {
-            moveFarmerRight()
-        }
-        if (event.code === 'ArrowLeft') {
-            moveFarmerLeft()
-        }
-    })
+function collisionDetection() {
+    if ( cow.x < farmer.x + farmer.width  &&
+         cow.y < farmer.y + farmer.height &&
+        cow.x + cow.width  > farmer.x &&
+        cow.y + cow.height > farmer.y) {
+       alert('AAAY')
+   }
 }
 
-Farmer()
+//let timerId = setInterval(cow.moveCow,50); 
+function startGame () {
+    setInterval(function(){
+//mover vaca
+//detectar colisiones
+
+    })
+
+}
