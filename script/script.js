@@ -1,6 +1,7 @@
 const farmer = document.getElementById('farmer')
 const canvas = document.getElementById('canvas')
 const cow = document.getElementById('cow')
+//this.farmerPos = 0
 
 function Farmer() {
     this.farmerPos = 0
@@ -28,3 +29,23 @@ function Farmer() {
 }
 
 Farmer()
+
+function Cow (){
+    this.cowPos = 0
+    this.cowDirection = 1
+
+    this.moveCow = function () {
+        this.cowPos += 5*this.cowDirection;
+        this.cow.style.top = cowPos + 'px';
+        if (this.cowPos === 600) {
+            alert('BOOM!!!')
+        }
+      //  if (this.cowPos === farmer.farmerPos){
+        //   alert('funciona')
+        //}
+       
+      }
+      timerId = setInterval(moveCow,50);
+}
+
+Cow()
