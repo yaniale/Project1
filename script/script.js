@@ -13,20 +13,20 @@ window.addEventListener('keydown', function (event) {
 })
 
 function collisionDetection() {
-    if ( cow.x < farmer.x + farmer.width  &&
-         cow.y < farmer.y + farmer.height &&
-        cow.x + cow.width  > farmer.x &&
+    if (cow.x < farmer.x + farmer.width &&
+        cow.y < farmer.y + farmer.height &&
+        cow.x + cow.width > farmer.x &&
         cow.y + cow.height > farmer.y) {
-       alert('AAAY')
-   }
+        alert('AAAY')
+    }
 }
 
-//let timerId = setInterval(cow.moveCow,50); 
-function startGame () {
-    setInterval(function(){
+let timerId = setInterval(cow.moveCow, 50);
+// function startGame () {
+//     setInterval(function(){
 //mover vaca
 //detectar colisiones
 
-    })
+    // })
 
-}
+// }
