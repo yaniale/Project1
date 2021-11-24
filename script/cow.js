@@ -1,12 +1,15 @@
 function Cow() {
     var self = this
     this.cow = document.getElementById('cow')
-    this.pos = 0
+    this.y = 0
+    this.height = 50
+    this.width = 80
+    this.x = 0
 
     this.moveCow = function () {
-        self.pos = self.pos + 5
-        self.cow.style.top = self.pos + 'px';
-        if (self.pos === 600) {
+        this.y = this.y + 5
+        this.cow.style.top = `${this.y}px`
+        if (this.y === 600) {
             alert('BOOM!!!')
         }
     }

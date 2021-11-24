@@ -13,20 +13,17 @@ window.addEventListener('keydown', function (event) {
 })
 
 function collisionDetection() {
-    if (cow.x < farmer.x + farmer.width &&
-        cow.y < farmer.y + farmer.height &&
-        cow.x + cow.width > farmer.x &&
-        cow.y + cow.height > farmer.y) {
+    if (cow.y + cow.height >= farmer.y &&
+        cow.x <= farmer.x + farmer.width &&
+        cow.x + cow.width >= farmer.x) {
         alert('AAAY')
     }
 }
 
-let timerId = setInterval(cow.moveCow, 50);
-// function startGame () {
-//     setInterval(function(){
-//mover vaca
-//detectar colisiones
-
-    // })
-
-// }
+function startGame() {
+    setInterval(function () {
+        cow.moveCow()
+        collisionDetection()
+    }, 50)
+}
+startGame()

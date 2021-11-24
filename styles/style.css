@@ -4,20 +4,26 @@
     height: 640px;
     background-color: aquamarine;
     margin: 0 auto;
+    background-image: url(/assets/bg.jpg);
+    background-size: cover;
 }
 
 #farmer {
     position: absolute;
-    bottom: 0;
-    width: 50px;
-    height: 100px;
-    background-color: blue;
+    top: 520px;
+    width: 65px;
+    height: 120px;
+    background-image: url(/assets/farmer.png);
+    background-size: cover;
+    /* background-color: blue; */
 }
 
 #cow {
     position: absolute;
     top: 0;
-    width: 70px;
-    height: 40px;
-    background-color: grey;
+    width: 80px;
+    height: 50px;
+    background-image: url(/assets/cow-basic.png);
+    background-size:cover;
+    /* background-color: grey; */
 }
