@@ -2,6 +2,7 @@
 const canvas = document.getElementById('canvas')
 const farmer = new Farmer()
 const cow = new Cow()
+const ufo = new Ufo()
 
 window.addEventListener('keydown', function (event) {
     if (event.code === 'ArrowRight') {
@@ -24,6 +25,7 @@ function startGame() {
     setInterval(function () {
         cow.moveCow()
         collisionDetection()
+        ufo.moveUfo()
     }, 50)
 }
 startGame()
