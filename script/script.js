@@ -18,14 +18,21 @@ function collisionDetection() {
         cow.x < farmer.x + farmer.width &&
         cow.x + cow.width > farmer.x) {
         alert('AAAY')
+        // clearInterval(timerCow)
     }
 }
 
+var timerCow
+var timerUfo
+
 function startGame() {
-    setInterval(function () {
+   timerCow = setInterval(function () {
         cow.moveCow()
         collisionDetection()
-        ufo.moveUfo()
     }, 50)
+    
+    timerUfo = setInterval (function (){
+        ufo.moveUfo()
+    }, 30)
 }
 startGame()

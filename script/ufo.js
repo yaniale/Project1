@@ -7,12 +7,10 @@ function Ufo() {
     this.direction = 1
 
     this.moveUfo = function () {
-        self.x = self.x + 5
+        self.x += 10 * self.direction
         self.ovni.style.left = `${self.x}px`
-        if (self.x + self.width === 800){
-           alert('right border')
-           
-        } 
-    
+        if (self.x >= 600 || self.x === 0) {
+            self.direction *= -1
+        }
     }
 }

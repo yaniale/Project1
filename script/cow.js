@@ -7,10 +7,11 @@ function Cow() {
     this.x = 0
 
     this.moveCow = function () {
-        this.y = this.y + 5
+        this.y += 5
         this.cow.style.top = `${this.y}px`
         if (this.y === 595) {
             alert('BOOM!!!')
+            clearInterval(timerCow)
         }
     }
 }
