@@ -15,7 +15,7 @@ window.addEventListener('keydown', function (event) {
 
 function collisionDetection() {
   cows.forEach(function (cow) {
-    if (cow.y + cow.height > farmer.y &&        //quitando los = del if se corrigen las separaciones entre farmer-cow
+    if (cow.y + cow.height > farmer.y &&
       cow.x < farmer.x + farmer.width &&
       cow.x + cow.width > farmer.x) {
       alert('AAAY')
