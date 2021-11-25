@@ -1,7 +1,7 @@
-function Cow(x=0) {
+function Cow(x = 0) {
   var self = this
   this.x = x
-  this.y = 100
+  this.y = 120
   this.height = 50
   this.width = 80
 
@@ -14,8 +14,9 @@ function Cow(x=0) {
   this.moveCow = function () {
     this.y += 5
     this.cow.style.top = `${this.y}px`
-    if (this.y === 595) {
-      canvas.removeChild(self.cow)
-    }
+  }
+
+  this.die = function() {
+    this.cow.parentNode.removeChild(this.cow)
   }
 }

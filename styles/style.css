@@ -1,53 +1,57 @@
 #canvas {
-    position: relative;
-    width: 800px;
-    height: 640px;
-    background-color: aquamarine;
-    margin: 0 auto;
-    padding: 0;
-    background-image: url(/assets/bg.jpg);
-    background-size: cover;
-    border: solid black 1px;
+  position: relative;
+  width: 800px;
+  height: 640px;
+  background-color: aquamarine;
+  margin: 0 auto;
+  padding: 0;
+  background-image: url(/assets/bg.jpg);
+  background-size: cover;
+  border: solid black 1px;
 }
 
 #farmer {
-    position: absolute;
-    top: 520px;
-    width: 70px;
-    height: 120px;
-    background-image: url(/assets/farmer.png);
-    background-size: cover;
-    /* background-color: blue; */
+  position: absolute;
+  top: 520px;
+  width: 70px;
+  height: 120px;
+  background-image: url(/assets/farmer.png);
+  background-size: cover;
+  /* background-color: blue; */
 }
 .cow {
-    position: absolute;
-    top: 0;
-    width: 80px;
-    height: 50px;
-    background-image: url(/assets/cow-basic.png);
-    background-size:cover;
-    /* background-color: grey; */
-    /* animation: rotation 2s linear infinite; */
+  position: absolute;
+  top: 0;
+  width: 80px;
+  height: 50px;
+  background-image: url(/assets/cow-basic.png);
+  background-size:cover;
+  /* background-color: grey; */
+  /* animation: rotation 2s linear infinite; */
 }
 /* @keyframes rotation {
     0%   { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 } */
 
-.imgr{
-    -webkit-animation: 3s rotate linear infinite;
-    animation: 3s rotate linear infinite;
-    -webkit-transform-origin: 50% 50%;
-    transform-origin: 50% 50%;
-}
 #ufo {
-    position: absolute;
-    top: 40px;
-    left: 300px;
-    width: 180px;
-    height: 85px;
-    background-image: url(/assets/OVNI.png);
-    background-size:cover;
-    z-index: 1000;
-    /* background-color: blueviolet; */
+  position: absolute;
+  top: 80px;
+  left: 300px;
+  width: 180px;
+  height: 85px;
+  background-image: url(/assets/OVNI.png);
+  background-size:cover;
+  z-index: 1000;
+  /* background-color: blueviolet; */
+}
+
+#cow-counter {
+	margin: 0 auto;
+	width: 100px;
+	height: 50px;
+	background-color: gray;
+	text-align: center;
+	line-height: 50px;
+	font-size: large;
 }
