@@ -19,7 +19,7 @@
     background-size: cover;
     /* background-color: blue; */
 }
-#cow {
+.cow {
     position: absolute;
     top: 0;
     width: 80px;
@@ -27,6 +27,18 @@
     background-image: url(/assets/cow-basic.png);
     background-size:cover;
     /* background-color: grey; */
+    /* animation: rotation 2s linear infinite; */
+}
+/* @keyframes rotation {
+    0%   { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+} */
+
+.imgr{
+    -webkit-animation: 3s rotate linear infinite;
+    animation: 3s rotate linear infinite;
+    -webkit-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
 }
 #ufo {
     position: absolute;
@@ -36,5 +48,6 @@
     height: 85px;
     background-image: url(/assets/OVNI.png);
     background-size:cover;
+    z-index: 1000;
     /* background-color: blueviolet; */
 }
