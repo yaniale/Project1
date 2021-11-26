@@ -53,6 +53,7 @@
 	background-color: gray;
 	text-align: center;
 	line-height: 50px;
+  font-family: sans-serif;
 	font-size: large;
 }
 
@@ -66,6 +67,7 @@
 	text-align: center;
 	line-height: 50px;
 	font-size: large;
+  font-family: sans-serif;
 }
 
 #level {
