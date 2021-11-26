@@ -3,6 +3,7 @@ const farmer = new Farmer()
 const cows = []
 const ufo = new Ufo()
 
+// **Para los contadores***
 var life = 3
 var lifeCounter = document.getElementById('life')
 lifeCounter.innerText = life
@@ -11,6 +12,7 @@ var cowCount = 0
 var cowCounter = document.getElementById('cow-counter')
 cowCounter.innerText = cowCount
 
+// ***movimeintos del sprite***
 window.addEventListener('keydown', function (event) {
   if (event.code === 'ArrowRight') {
     farmer.moveRight()
@@ -20,6 +22,7 @@ window.addEventListener('keydown', function (event) {
   }
 })
 
+// ***farmer recoge cows, desaparecen de la pantalla y aumenta el contador***
 function collisionDetection() {
   var cowPos = null
   var mycow
@@ -38,6 +41,7 @@ function collisionDetection() {
   }
 }
 
+// ***elimina las cows que llegan al suelo y se pierde vidas***
 function removeCow() {
   if (cows.length > 0 && cows[0].y === 595) {
     cows[0].die()
@@ -46,14 +50,27 @@ function removeCow() {
   }
 }
 
+// ***game over: sprite sin vidas y dejan de aparecer cows***
 function gameOver() {
+  let gameOver = document.createElement('div')
+  canvas.appendChild(gameOver)
+  gameOver.classList.add('gameOver', 'blink')
+
   if (life < 1) {
-    alert('YOU LET THEM DIE')
+    life = 1 //para que cuando terminen de caer el resto de vacas, el contador se quede = 0
+    gameOver.innerText = 'GAME OVER'
+    clearInterval(timerUfo)
+    clearInterval(timerNewCow)
   }
 }
 
+// ***START GAME***
+var timerCow
+var timerUfo
+var timerNewCow
+
 function startGame() {
-  var timerCow = setInterval(function () {
+  timerCow = setInterval(function () {
     cows.forEach(cow => {
       cow.moveCow()
     })
@@ -62,11 +79,11 @@ function startGame() {
     gameOver()
   }.bind(this), 50)
 
-  var timerUfo = setInterval(function () {
+  timerUfo = setInterval(function () {
     ufo.moveUfo()
   }, 50)
 
-  var timerNewCow = setInterval(() => {
+  timerNewCow = setInterval(() => {
     cows.push(new Cow(ufo.x + 65))
   }, 3000);
 }

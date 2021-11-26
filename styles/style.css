@@ -55,6 +55,7 @@
 	line-height: 50px;
 	font-size: large;
 }
+
 #life {
 	position:absolute;
   top:0;
@@ -66,6 +67,7 @@
 	line-height: 50px;
 	font-size: large;
 }
+
 #level {
 	position:absolute;
   top:0;
@@ -76,4 +78,27 @@
 	text-align: center;
 	line-height: 50px;
 	font-size: large;
+}
+
+.gameOver {
+  position:absolute;
+  left: 10%;
+  line-height: 550px;
+  font-family: 'Permanent Marker', cursive;
+  font-size: 100px;
+  color: orange;
+  text-shadow: 10px 10px rgb(94, 75, 42) ;
+}
+
+.blink {
+  animation-name: parpadeo;
+  animation-duration: 2s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes parpadeo {
+  0% { opacity: 1.0; }
+  50% { opacity: 0.0; }
+  100% { opacity: 1.0; }
 }
