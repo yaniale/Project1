@@ -1,8 +1,15 @@
-
 const canvas = document.getElementById('canvas')
 const farmer = new Farmer()
 const cows = []
 const ufo = new Ufo()
+
+var life = 3
+var lifeCounter = document.getElementById('life')
+lifeCounter.innerText = life
+
+var cowCount = 0
+var cowCounter = document.getElementById('cow-counter')
+cowCounter.innerText = cowCount
 
 window.addEventListener('keydown', function (event) {
   if (event.code === 'ArrowRight') {
@@ -27,6 +34,7 @@ function collisionDetection() {
   if (cowPos !== null) { //null es falsy, entonces indicamos que el valor sea distinto a null
     cows.splice(cowPos, 1)
     mycow.die()
+    cowCounter.innerText = ++cowCount
   }
 }
 
@@ -34,6 +42,13 @@ function removeCow() {
   if (cows.length > 0 && cows[0].y === 595) {
     cows[0].die()
     cows.shift()
+    lifeCounter.innerText = --life
+  }
+}
+
+function gameOver() {
+  if (life < 1) {
+    alert('YOU LET THEM DIE')
   }
 }
 
@@ -44,6 +59,7 @@ function startGame() {
     })
     removeCow()
     collisionDetection()
+    gameOver()
   }.bind(this), 50)
 
   var timerUfo = setInterval(function () {
@@ -54,4 +70,5 @@ function startGame() {
     cows.push(new Cow(ufo.x + 65))
   }, 3000);
 }
+
 startGame()
