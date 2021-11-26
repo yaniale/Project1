@@ -1,30 +1,79 @@
 #canvas {
-    position: relative;
-    width: 800px;
-    height: 640px;
-    background-color: aquamarine;
-    margin: 0 auto;
-    padding: 0;
-    background-image: url(/assets/bg.jpg);
-    background-size: cover;
-    border: solid black 1px;
+  position: relative;
+  width: 800px;
+  height: 640px;
+  background-color: aquamarine;
+  margin: 0 auto;
+  padding: 0;
+  background-image: url(/assets/bg.jpg);
+  background-size: cover;
+  border: solid black 1px;
 }
 
 #farmer {
-    position: absolute;
-    top: 520px;
-    width: 70px;
-    height: 120px;
-    background-image: url(/assets/farmer.png);
-    background-size: cover;
-    /* background-color: blue; */
+  position: absolute;
+  top: 520px;
+  width: 70px;
+  height: 120px;
+  background-image: url(/assets/farmer.png);
+  background-size: cover;
+  /* background-color: blue; */
 }
-#cow {
-    position: absolute;
-    top: 0;
-    width: 80px;
-    height: 50px;
-    background-image: url(/assets/cow-basic.png);
-    background-size:cover;
-    /* background-color: grey; */
+.cow {
+  position: absolute;
+  top: 0;
+  width: 80px;
+  height: 50px;
+  background-image: url(/assets/cow-basic.png);
+  background-size:cover;
+  /* background-color: grey; */
+  /* animation: rotation 2s linear infinite; */
+}
+/* @keyframes rotation {
+    0%   { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+} */
+
+#ufo {
+  position: absolute;
+  top: 80px;
+  left: 300px;
+  width: 180px;
+  height: 85px;
+  background-image: url(/assets/OVNI.png);
+  background-size:cover;
+  z-index: 1000;
+  /* background-color: blueviolet; */
+}
+
+#cow-counter {
+	margin: 0 auto;
+	width: 100px;
+	height: 50px;
+	background-color: gray;
+	text-align: center;
+	line-height: 50px;
+	font-size: large;
+}
+#life {
+	position:absolute;
+  top:0;
+  right: 0;
+	width: 50px;
+	height: 50px;
+	background-color: gray;
+	text-align: center;
+	line-height: 50px;
+	font-size: large;
+}
+#level {
+	position:absolute;
+  top:0;
+  left: 0;
+	width: 50px;
+	height: 50px;
+	background-color: gray;
+	text-align: center;
+	line-height: 50px;
+	font-size: large;
 }

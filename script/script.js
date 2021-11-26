@@ -1,29 +1,74 @@
-
 const canvas = document.getElementById('canvas')
 const farmer = new Farmer()
-const cow = new Cow()
+const cows = []
+const ufo = new Ufo()
+
+var life = 3
+var lifeCounter = document.getElementById('life')
+lifeCounter.innerText = life
+
+var cowCount = 0
+var cowCounter = document.getElementById('cow-counter')
+cowCounter.innerText = cowCount
 
 window.addEventListener('keydown', function (event) {
-    if (event.code === 'ArrowRight') {
-        farmer.moveRight()
-    }
-    if (event.code === 'ArrowLeft') {
-        farmer.moveLeft()
-    }
+  if (event.code === 'ArrowRight') {
+    farmer.moveRight()
+  }
+  if (event.code === 'ArrowLeft') {
+    farmer.moveLeft()
+  }
 })
 
 function collisionDetection() {
-    if (cow.y + cow.height > farmer.y &&        //quitando los = del if se corrigen las separaciones entre farmer-cow
-        cow.x < farmer.x + farmer.width &&
-        cow.x + cow.width > farmer.x) {
-        alert('AAAY')
+  var cowPos = null
+  var mycow
+  cows.forEach(function (cow, index) {
+    if (cow.y + cow.height > farmer.y &&
+      cow.x < farmer.x + farmer.width &&
+      cow.x + cow.width > farmer.x) {
+      cowPos = index
+      mycow = cow
     }
+  })
+  if (cowPos !== null) { //null es falsy, entonces indicamos que el valor sea distinto a null
+    cows.splice(cowPos, 1)
+    mycow.die()
+    cowCounter.innerText = ++cowCount
+  }
+}
+
+function removeCow() {
+  if (cows.length > 0 && cows[0].y === 595) {
+    cows[0].die()
+    cows.shift()
+    lifeCounter.innerText = --life
+  }
+}
+
+function gameOver() {
+  if (life < 1) {
+    alert('YOU LET THEM DIE')
+  }
 }
 
 function startGame() {
-    setInterval(function () {
-        cow.moveCow()
-        collisionDetection()
-    }, 50)
+  var timerCow = setInterval(function () {
+    cows.forEach(cow => {
+      cow.moveCow()
+    })
+    removeCow()
+    collisionDetection()
+    gameOver()
+  }.bind(this), 50)
+
+  var timerUfo = setInterval(function () {
+    ufo.moveUfo()
+  }, 50)
+
+  var timerNewCow = setInterval(() => {
+    cows.push(new Cow(ufo.x + 65))
+  }, 3000);
 }
+
 startGame()
