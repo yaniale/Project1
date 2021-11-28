@@ -33,7 +33,14 @@
     0%   { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 } */
-
+.deadCow {
+  position: absolute;
+  top: 0;
+  width: 80px;
+  height: 50px;
+  background-image: url(/assets/splash2.gif);
+  background-size:cover;
+}
 #ufo {
   position: absolute;
   top: 80px;
@@ -45,12 +52,13 @@
   z-index: 1000;
   /* background-color: blueviolet; */
 }
-
+/* ***CONTADORES*** */
 #cow-counter {
 	margin: 0 auto;
 	width: 100px;
-	height: 50px;
-	background-color: gray;
+	height: 60px;
+	background-color: rgba(85, 163, 187, 0.5);
+  border-radius: 100%;
 	text-align: center;
 	line-height: 50px;
   font-family: sans-serif;
@@ -63,11 +71,15 @@
   right: 0;
 	width: 50px;
 	height: 50px;
-	background-color: gray;
+	/* background-color: rgba(85, 163, 187, 0.5); */
 	text-align: center;
 	line-height: 50px;
 	font-size: large;
   font-family: sans-serif;
+  font-weight: bolder;
+  color: white;
+  background-image: url(/assets/heart2.png);
+  background-size: cover;
 }
 
 #level {
@@ -76,12 +88,14 @@
   left: 0;
 	width: 50px;
 	height: 50px;
-	background-color: gray;
+  background-color: rgba(85, 163, 187, 0.5);
+  border-radius: 100%;
 	text-align: center;
 	line-height: 50px;
 	font-size: large;
+  font-family: sans-serif;
 }
-
+/* ***GAME OVER*** */
 .gameOver {
   position:absolute;
   left: 10%;
@@ -93,13 +107,13 @@
 }
 
 .blink {
-  animation-name: parpadeo;
+  animation-name: blink;
   animation-duration: 2s;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
 }
 
-@keyframes parpadeo {
+@keyframes blink {
   0% { opacity: 1.0; }
   50% { opacity: 0.0; }
   100% { opacity: 1.0; }

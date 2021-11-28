@@ -3,7 +3,7 @@ const farmer = new Farmer()
 const cows = []
 const ufo = new Ufo()
 
-// **Para los contadores***
+// **Contadores***
 var life = 3
 var lifeCounter = document.getElementById('life')
 lifeCounter.innerText = life
@@ -11,6 +11,11 @@ lifeCounter.innerText = life
 var cowCount = 0
 var cowCounter = document.getElementById('cow-counter')
 cowCounter.innerText = cowCount
+
+var level = 1
+var levelCounter = document.getElementById('level')
+levelCounter.innerText = level
+
 
 // ***movimeintos del sprite***
 window.addEventListener('keydown', function (event) {
@@ -56,8 +61,8 @@ function gameOver() {
   canvas.appendChild(gameOver)
   gameOver.classList.add('gameOver', 'blink')
 
-  if (life < 1) {
-    life = 1 //para que cuando terminen de caer el resto de vacas, el contador se quede = 0
+  if (life === 0) {
+    life = 1 //si lo pongo a 0, me sigue restando vidas una vez gameover
     gameOver.innerText = 'GAME OVER'
     clearInterval(timerUfo)
     clearInterval(timerNewCow)
