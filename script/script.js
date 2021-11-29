@@ -4,7 +4,7 @@ let cows = []
 const ufo = new Ufo()
 
 // **Contadores***
-var life = 3
+var life = 1
 var lifeCounter = document.getElementById('life')
 lifeCounter.innerText = life
 
@@ -13,8 +13,8 @@ var cowCountHTML = document.getElementById('cow-counter')
 cowCountHTML.innerText = cowCount
 
 var level = 1
-var levelCounter = document.getElementById('level')
-levelCounter.innerText = level
+var levelHTML = document.getElementById('level')
+levelHTML.innerText = level
 
 
 // ***movimeintos del sprite***
@@ -26,6 +26,8 @@ window.addEventListener('keydown', function (event) {
     farmer.moveLeft()
   }
 })
+
+
 
 // ***farmer recoge cows, desaparecen de la pantalla y aumenta el contador***
 function collisionDetection() {
@@ -55,18 +57,34 @@ function removeCow() {
   }
 }
 
+
+// function restartGame() {
+//   var restartHTML = document.createElement('button')
+//   canvas.appendChild(restartHTML)
+//   restartHTML.classList.add('restartBtn')
+
+//   restartHTML.onclick = startGame
+//   lifeCounter.innerText = 3
+//   gameOver.parentNode.removeChild('gameOver')
+
+
+// }
+
 // ***game over: sprite sin vidas y dejan de aparecer cows***
+
+
 function checkGameOver() {
+  var gameOver = document.createElement('div')
+  canvas.appendChild(gameOver)
+  gameOver.classList.add('gameOver', 'blink')
   if (life === 0) {
-    let gameOver = document.createElement('div')
-    canvas.appendChild(gameOver)
-    gameOver.classList.add('gameOver', 'blink')
 
     life = 1 //si lo pongo a 0, me sigue restando vidas una vez gameover
     gameOver.innerText = 'GAME OVER'
     clearInterval(timerUfo)
     clearInterval(timerNewCow)
     clearInterval(timerCow)
+    // restartGame()
   }
 }
 
@@ -85,16 +103,18 @@ function checkWin() {
 
     // Despues de X segundos
     setTimeout(
-      function() {
+      function () {
         youwinHTML.parentNode.removeChild(youwinHTML)
 
         // Carga fase 2
         speedUfo -= 5
         speedCow -= 500
         cowCount = 0
+        cowCountHTML.innerText = 0
+        levelHTML.innerText = ++level
 
         // resetear vacas
-        cows.forEach(cow => {cow.die()})
+        cows.forEach(cow => { cow.die() })
         cows = []
 
         // ovni lo movemos al centro
