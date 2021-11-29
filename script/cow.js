@@ -17,6 +17,10 @@ function Cow(x = 0) {
   }
 
   this.die = function() {
-    this.cow.parentNode.removeChild(this.cow)
+    this.cow.classList.remove('cow')
+    this.cow.classList.add('deadCow')
+    setTimeout(function(){
+      this.cow.parentNode.removeChild(this.cow)
+    }.bind(this) ,1000)
   }
 }
