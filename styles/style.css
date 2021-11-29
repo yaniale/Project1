@@ -38,7 +38,7 @@
   top: 0;
   width: 80px;
   height: 50px;
-  background-image: url(/assets/splash2.gif);
+  background-image: url(/assets/Black_Blood_Effect.gif);
   background-size:cover;
 }
 #ufo {
@@ -117,4 +117,9 @@
   0% { opacity: 1.0; }
   50% { opacity: 0.0; }
   100% { opacity: 1.0; }
+}
+
+.flip {
+  -webkit-transform:scaleX(-1);
+  transform:scaleX(-1);
 }

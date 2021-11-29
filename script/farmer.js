@@ -10,12 +10,14 @@ function Farmer() {
     if (self.x <= 720) {
       self.x += 10
       self.sprite.style.left = `${self.x}px`
+      self.sprite.classList.add('flip')
     }
   }
   this.moveLeft = function () {
     if (self.x >= 10) {
       self.x -= 10
       self.sprite.style.left = `${self.x}px`
+      self.sprite.classList.remove('flip')
     }
   }
 
