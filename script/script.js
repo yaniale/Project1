@@ -1,6 +1,6 @@
 const canvas = document.getElementById('canvas')
 const farmer = new Farmer()
-const cows = []
+let cows = []
 const ufo = new Ufo()
 
 // **Contadores***
@@ -9,8 +9,8 @@ var lifeCounter = document.getElementById('life')
 lifeCounter.innerText = life
 
 var cowCount = 0
-var cowCounter = document.getElementById('cow-counter')
-cowCounter.innerText = cowCount
+var cowCountHTML = document.getElementById('cow-counter')
+cowCountHTML.innerText = cowCount
 
 var level = 1
 var levelCounter = document.getElementById('level')
@@ -42,7 +42,7 @@ function collisionDetection() {
   if (cowPos !== null) { //null es falsy, entonces indicamos que el valor sea distinto a null
     cows.splice(cowPos, 1)
     mycow.die()
-    cowCounter.innerText = ++cowCount
+    cowCountHTML.innerText = ++cowCount
   }
 }
 
@@ -56,18 +56,60 @@ function removeCow() {
 }
 
 // ***game over: sprite sin vidas y dejan de aparecer cows***
-function gameOver() {
-  let gameOver = document.createElement('div')
-  canvas.appendChild(gameOver)
-  gameOver.classList.add('gameOver', 'blink')
-
+function checkGameOver() {
   if (life === 0) {
+    let gameOver = document.createElement('div')
+    canvas.appendChild(gameOver)
+    gameOver.classList.add('gameOver', 'blink')
+
     life = 1 //si lo pongo a 0, me sigue restando vidas una vez gameover
     gameOver.innerText = 'GAME OVER'
     clearInterval(timerUfo)
     clearInterval(timerNewCow)
+    clearInterval(timerCow)
   }
 }
+
+function checkWin() {
+  if (cowCount === 2) {
+    // stop everything
+    clearInterval(timerUfo)
+    clearInterval(timerNewCow)
+    clearInterval(timerCow)
+
+    // Show div with cool animation
+    let youwinHTML = document.createElement('div')
+    canvas.appendChild(youwinHTML)
+    youwinHTML.classList.add('gameOver', 'blink')
+    youwinHTML.innerText = 'You Win'
+
+    // Despues de X segundos
+    setTimeout(
+      function() {
+        youwinHTML.parentNode.removeChild(youwinHTML)
+
+        // Carga fase 2
+        speedUfo -= 5
+        speedCow -= 500
+        cowCount = 0
+
+        // resetear vacas
+        cows.forEach(cow => {cow.die()})
+        cows = []
+
+        // ovni lo movemos al centro
+        ufo.x = 230
+        startGame()
+      },
+      3000
+    )
+  }
+}
+
+//pasar de fase
+var speed = 80
+var speedUfo = 50
+var speedCow = 3000
 
 // ***START GAME***
 var timerCow
@@ -81,16 +123,17 @@ function startGame() {
     })
     removeCow()
     collisionDetection()
-    gameOver()
-  }.bind(this), 50)
+    checkGameOver()
+    checkWin()
+  }.bind(this), speed)
 
   timerUfo = setInterval(function () {
     ufo.moveUfo()
-  }, 50)
+  }, speedUfo)
 
   timerNewCow = setInterval(() => {
     cows.push(new Cow(ufo.x + 65))
-  }, 3000);
+  }, speedCow);
 }
 
 startGame()
