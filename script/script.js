@@ -3,6 +3,11 @@ const farmer = new Farmer()
 let cows = []
 const ufo = new Ufo()
 
+const audio = {
+  xfiles: document.getElementById('audioFondo'),
+}
+audio.xfiles.volume = 0.1
+
 // **Contadores***
 var life = 1
 var lifeCounter = document.getElementById('life')
@@ -16,9 +21,13 @@ var level = 1
 var levelHTML = document.getElementById('level')
 levelHTML.innerText = level
 
-
+let musicPlaying = false
 // ***movimeintos del sprite***
 window.addEventListener('keydown', function (event) {
+  if (!musicPlaying) {
+    audio.xfiles.play()
+    musicPlaying = true
+  }
   if (event.code === 'ArrowRight') {
     farmer.moveRight()
   }
@@ -57,18 +66,17 @@ function removeCow() {
   }
 }
 
+function restartGame() {
+  var restartHTML = document.createElement('button')
+  restartHTML.innerText = 'Try again'
+  restartHTML.setAttribute('id','restartbutton')
+  restartHTML.classList.add('restartBtn')
+  canvas.appendChild(restartHTML)
 
-// function restartGame() {
-//   var restartHTML = document.createElement('button')
-//   canvas.appendChild(restartHTML)
-//   restartHTML.classList.add('restartBtn')
-
-//   restartHTML.onclick = startGame
-//   lifeCounter.innerText = 3
-//   gameOver.parentNode.removeChild('gameOver')
-
-
-// }
+  restartHTML.addEventListener('click',startGame)
+  lifeCounter.innerText = 3
+  gameOver.parentNode.removeChild('gameOver')
+}
 
 // ***game over: sprite sin vidas y dejan de aparecer cows***
 
@@ -84,7 +92,7 @@ function checkGameOver() {
     clearInterval(timerUfo)
     clearInterval(timerNewCow)
     clearInterval(timerCow)
-    // restartGame()
+    restartGame()
   }
 }
 
@@ -137,7 +145,13 @@ var timerUfo
 var timerNewCow
 
 function startGame() {
+  let elem = document.getElementById('restartbutton')
+  if (elem) {
+    elem.parentNode.removeChild(elem)
+  }
+
   timerCow = setInterval(function () {
+
     cows.forEach(cow => {
       cow.moveCow()
     })
