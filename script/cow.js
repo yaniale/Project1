@@ -1,8 +1,8 @@
 function Cow(x = 0) {
   this.x = x
   this.y = 120
-  this.height = 50
-  this.width = 80
+  this.height = 60
+  this.width = 60
 
   //***creamos las vacas***
   this.cow = document.createElement('div')
