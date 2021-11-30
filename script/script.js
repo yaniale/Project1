@@ -1,4 +1,5 @@
 const canvas = document.getElementById('canvas')
+const title = document.getElementById('title')
 const farmer = new Farmer()
 let cows = []
 const ufo = new Ufo()
@@ -35,8 +36,18 @@ window.addEventListener('keydown', function (event) {
   }
 })
 
+  let startBtn = document.createElement('button')
+  startBtn.classList.add('restartBtn')
+  startBtn.addEventListener('click', hideTitle)
+  title.appendChild(startBtn)
 
-
+  function hideTitle() {
+    title.style.display = 'none'
+    console.log(title)
+    canvas.style.display = 'block'
+    startGame()
+  }
+  
 // ***farmer recoge cows, desaparecen de la pantalla y aumenta el contador***
 function collisionDetection() {
   var cowPos = null
@@ -67,28 +78,19 @@ function removeCow() {
 
 function showGameOver() {
   var gameOver = document.createElement('div')
-    gameOver.setAttribute('id', 'game-over')
-    canvas.appendChild(gameOver)
-    gameOver.classList.add('gameOver', 'blink')
-    gameOver.innerText = 'GAME OVER'
+  gameOver.setAttribute('id', 'game-over')
+  canvas.appendChild(gameOver)
+  gameOver.classList.add('gameOver', 'blink')
+  gameOver.innerText = 'GAME OVER'
   var restartHTML = document.createElement('button')
-  restartHTML.innerText = 'Try again'
-  restartHTML.setAttribute('id','restartbutton')
+  restartHTML.setAttribute('id', 'restartbutton')
   restartHTML.classList.add('restartBtn')
   canvas.appendChild(restartHTML)
   restartHTML.addEventListener('click', reset)
-  
-  //lifeCounter.innerText = 1
-
-  /*let gameOverText = document.getElementById('gameOverText')
-  gameOverText.setAttribute('id', 'gameOverText')
-  if (gameOverText){
-    gameOverText.parentNode.removeChild(gameOver)
-  }*/
 }
 
 // ***game over: sprite sin vidas y dejan de aparecer cows***
- function reset () {
+function reset() {
   var gameOver = document.getElementById('game-over')
   canvas.removeChild(gameOver)
   let elem = document.getElementById('restartbutton')
@@ -96,7 +98,7 @@ function showGameOver() {
     elem.parentNode.removeChild(elem)
   }
   startGame()
- }
+}
 
 function checkGameOver() {
   if (life === 0) {
@@ -188,5 +190,3 @@ function startGame() {
     cows.push(new Cow(ufo.x + 50))
   }, speedCow);
 }
-
-startGame()

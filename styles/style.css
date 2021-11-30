@@ -1,11 +1,23 @@
-#canvas {
+#title {
+  width: 800px;
+  height: 640px;
+  background-image: url(../assets/cowStart.gif);
+  margin: 0 auto;
+  background-size: cover;
+  z-index: 1;
+  display: block;
+}  
+  
+  #canvas {
   position: relative;
+  z-index: 0;
+  display: none;
   width: 800px;
   height: 640px;
   background-color: aquamarine;
   margin: 0 auto;
   padding: 0;
-  background-image: url(/assets/granjaNoche.jpeg);
+  background-image: url(../assets/granjaNoche.jpeg);
   background-size: cover;
   border: solid black 1px;
 }
@@ -116,8 +128,8 @@
   line-height: 550px;
   font-family: 'Permanent Marker', cursive;
   font-size: 100px;
-  color: orange;
-  text-shadow: 10px 10px rgb(94, 75, 42) ;
+  color: rgb(155, 25, 25);
+  text-shadow: 10px 10px rgb(11, 31, 70) ;
 }
 
 .blink {
@@ -144,7 +156,11 @@
   left: 350px;
   width: 100px;
   height: 50px;
-  background-color: blueviolet;
+  border: none;
+  background-image: url(/assets/tryagain.png);
+  background-color: transparent;
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .nextLevel {
