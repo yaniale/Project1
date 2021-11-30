@@ -12,6 +12,7 @@ function Cow(x = 0) {
   document.getElementById('canvas').appendChild(this.cow)
 
   this.audio =  document.getElementById('audioCow')
+  this.audio.volume = 0.2
 
   this.moveCow = function () {
     this.y += 5

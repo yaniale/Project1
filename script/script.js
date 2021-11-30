@@ -59,7 +59,7 @@ function collisionDetection() {
 
 // ***elimina las cows que llegan al suelo y se pierde vidas***
 function removeCow() {
-  if (cows.length > 0 && cows[0].y === 595) {
+  if (cows.length > 0 && cows[0].y === 585) {
     cows[0].die()
     cows.shift()
     lifeCounter.innerText = --life
@@ -67,6 +67,7 @@ function removeCow() {
 }
 
 function restartGame() {
+  
   var restartHTML = document.createElement('button')
   restartHTML.innerText = 'Try again'
   restartHTML.setAttribute('id','restartbutton')
@@ -74,8 +75,13 @@ function restartGame() {
   canvas.appendChild(restartHTML)
 
   restartHTML.addEventListener('click',startGame)
-  lifeCounter.innerText = 3
-  gameOver.parentNode.removeChild('gameOver')
+  //lifeCounter.innerText = 1
+
+  /*let gameOverText = document.getElementById('gameOverText')
+  gameOverText.setAttribute('id', 'gameOverText')
+  if (gameOverText){
+    gameOverText.parentNode.removeChild(gameOver)
+  }*/
 }
 
 // ***game over: sprite sin vidas y dejan de aparecer cows***
@@ -92,6 +98,8 @@ function checkGameOver() {
     clearInterval(timerUfo)
     clearInterval(timerNewCow)
     clearInterval(timerCow)
+    cows.forEach(cow => { cow.die() })
+    cows = []
     restartGame()
   }
 }
@@ -106,8 +114,8 @@ function checkWin() {
     // Show div with cool animation
     let youwinHTML = document.createElement('div')
     canvas.appendChild(youwinHTML)
-    youwinHTML.classList.add('gameOver', 'blink')
-    youwinHTML.innerText = 'You Win'
+    youwinHTML.classList.add('nextLevel', 'blink')
+    youwinHTML.innerText = `Next Level`
 
     // Despues de X segundos
     setTimeout(
@@ -146,9 +154,11 @@ var timerNewCow
 
 function startGame() {
   let elem = document.getElementById('restartbutton')
+ 
   if (elem) {
     elem.parentNode.removeChild(elem)
   }
+
 
   timerCow = setInterval(function () {
 
@@ -166,7 +176,7 @@ function startGame() {
   }, speedUfo)
 
   timerNewCow = setInterval(() => {
-    cows.push(new Cow(ufo.x + 65))
+    cows.push(new Cow(ufo.x + 50))
   }, speedCow);
 }
 

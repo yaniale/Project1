@@ -145,3 +145,13 @@
   height: 50px;
   background-color: blueviolet;
 }
+
+.nextLevel {
+  position:absolute;
+  left: 25%;
+  line-height: 550px;
+  font-family: 'Permanent Marker', cursive;
+  font-size: 90px;
+  color: rgb(76, 130, 100);
+  text-shadow: 10px 10px rgb(31, 3, 99) ;
+}
