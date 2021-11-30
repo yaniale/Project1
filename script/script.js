@@ -11,15 +11,14 @@ audio.xfiles.volume = 0.1
 // **Contadores***
 var life = 1
 var lifeCounter = document.getElementById('life')
-lifeCounter.innerText = life
 
 var cowCount = 0
 var cowCountHTML = document.getElementById('cow-counter')
-cowCountHTML.innerText = cowCount
 
 var level = 1
 var levelHTML = document.getElementById('level')
-levelHTML.innerText = level
+
+var gameRunning = false
 
 let musicPlaying = false
 // ***movimeintos del sprite***
@@ -66,15 +65,19 @@ function removeCow() {
   }
 }
 
-function restartGame() {
-  
+function showGameOver() {
+  var gameOver = document.createElement('div')
+    gameOver.setAttribute('id', 'game-over')
+    canvas.appendChild(gameOver)
+    gameOver.classList.add('gameOver', 'blink')
+    gameOver.innerText = 'GAME OVER'
   var restartHTML = document.createElement('button')
   restartHTML.innerText = 'Try again'
   restartHTML.setAttribute('id','restartbutton')
   restartHTML.classList.add('restartBtn')
   canvas.appendChild(restartHTML)
-
-  restartHTML.addEventListener('click',startGame)
+  restartHTML.addEventListener('click', reset)
+  
   //lifeCounter.innerText = 1
 
   /*let gameOverText = document.getElementById('gameOverText')
@@ -85,22 +88,25 @@ function restartGame() {
 }
 
 // ***game over: sprite sin vidas y dejan de aparecer cows***
-
+ function reset () {
+  var gameOver = document.getElementById('game-over')
+  canvas.removeChild(gameOver)
+  let elem = document.getElementById('restartbutton')
+  if (elem) {
+    elem.parentNode.removeChild(elem)
+  }
+  startGame()
+ }
 
 function checkGameOver() {
-  var gameOver = document.createElement('div')
-  canvas.appendChild(gameOver)
-  gameOver.classList.add('gameOver', 'blink')
   if (life === 0) {
-
-    life = 1 //si lo pongo a 0, me sigue restando vidas una vez gameover
-    gameOver.innerText = 'GAME OVER'
     clearInterval(timerUfo)
     clearInterval(timerNewCow)
     clearInterval(timerCow)
+    gameRunning = false
     cows.forEach(cow => { cow.die() })
     cows = []
-    restartGame()
+    showGameOver()
   }
 }
 
@@ -153,12 +159,15 @@ var timerUfo
 var timerNewCow
 
 function startGame() {
-  let elem = document.getElementById('restartbutton')
- 
-  if (elem) {
-    elem.parentNode.removeChild(elem)
+  if (!gameRunning) {
+    life = 1
+    lifeCounter.innerText = life
+    cowCount = 0
+    cowCountHTML.innerText = cowCount
+    level = 1
+    levelHTML.innerText = level
+    gameRunning = true
   }
-
 
   timerCow = setInterval(function () {
 

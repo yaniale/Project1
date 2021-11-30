@@ -13,6 +13,7 @@
 #farmer {
   position: absolute;
   top: 520px;
+  left: 320px;
   width: 110px;
   height: 120px;
   background-image: url(/assets/zombieFarmer.png);
