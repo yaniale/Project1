@@ -20,5 +20,4 @@ function Farmer() {
       self.sprite.classList.add('flip')
     }
   }
-
 }

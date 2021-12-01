@@ -4,7 +4,6 @@ function Cow(x = 0) {
   this.height = 60
   this.width = 60
 
-  //***creamos las vacas***
   this.cow = document.createElement('div')
   this.cow.classList.add('cow')
   this.cow.style.left = `${this.x}px`

@@ -3,12 +3,13 @@ const title = document.getElementById('title')
 const farmer = new Farmer()
 let cows = []
 const ufo = new Ufo()
+var gameRunning = false
+let musicPlaying = false
 
 const audio = {
   xfiles: document.getElementById('audioFondo'),
 }
 audio.xfiles.volume = 0.1
-
 
 // **Contadores***
 var life = 1
@@ -20,15 +21,8 @@ var cowCountHTML = document.getElementById('cow-counter')
 var level = 1
 var levelHTML = document.getElementById('level')
 
-var gameRunning = false
-
-let musicPlaying = false
 // ***movimeintos del sprite***
 window.addEventListener('keydown', function (event) {
-  /*if (!musicPlaying) {
-    audio.xfiles.play()
-    musicPlaying = true
-  }*/
   if (event.code === 'ArrowRight') {
     farmer.moveRight()
   }
@@ -37,6 +31,7 @@ window.addEventListener('keydown', function (event) {
   }
 })
 
+//** Start Buton = Inicia el Juego */
   let startBtn = document.createElement('button')
   startBtn.classList.add('startBtn')
   startBtn.addEventListener('click', hideTitle)
@@ -66,14 +61,14 @@ function collisionDetection() {
       mycow = cow
     }
   })
-  if (cowPos !== null) { //null es falsy, entonces indicamos que el valor sea distinto a null
+  if (cowPos !== null) {
     cows.splice(cowPos, 1)
     mycow.die()
     cowCountHTML.innerText = ++cowCount
   }
 }
 
-// ***elimina las cows que llegan al suelo y se pierde vidas***
+// ***Elimina las cows que llegan al suelo y se pierde vidas***
 function removeCow() {
   if (cows.length > 0 && cows[0].y === 585) {
     cows[0].die()
@@ -82,6 +77,7 @@ function removeCow() {
   }
 }
 
+// *** GAME OVER ***
 function showGameOver() {
   var gameOver = document.createElement('div')
   gameOver.setAttribute('id', 'game-over')
@@ -98,16 +94,6 @@ function showGameOver() {
   canvas.appendChild(restartHTML)
   restartHTML.addEventListener('click', reset)
 }
-// ***game over: sprite sin vidas y dejan de aparecer cows***
-function reset() {
-  var gameOver = document.getElementById('game-over')
-  canvas.removeChild(gameOver)
-  let elem = document.getElementById('restartbutton')
-  if (elem) {
-    elem.parentNode.removeChild(elem)
-  }
-  startGame()
-}
 
 function checkGameOver() {
   if (life === 0) {
@@ -121,53 +107,57 @@ function checkGameOver() {
   }
 }
 
+function reset() {
+  var gameOver = document.getElementById('game-over')
+  canvas.removeChild(gameOver)
+  let elem = document.getElementById('restartbutton')
+  if (elem) {
+    elem.parentNode.removeChild(elem)
+  }
+  startGame()
+}
+
+//*** Next Level */
 function checkWin() {
   if (cowCount === 5) {
-    // stop everything
+    level++
     clearInterval(timerUfo)
     clearInterval(timerNewCow)
     clearInterval(timerCow)
-
     let audioWin = document.getElementById("audioWin")
     audioWin.volume = 0.3
     audioWin.play()
-    // Show div with cool animation
-    let youwinHTML = document.createElement('div')
-    canvas.appendChild(youwinHTML)
-    youwinHTML.classList.add('nextLevel', 'blink')
-    youwinHTML.innerText = `Next Level`
-
-    // Despues de X segundos
-    setTimeout(
-      function () {
-        youwinHTML.parentNode.removeChild(youwinHTML)
-
-        // Carga fase 2
-        speedUfo -= 8
-        speedCow -= 500
-        cowCount = 0
-        cowCountHTML.innerText = 0
-        levelHTML.innerText = ++level
-
-        // resetear vacas
-        cows.forEach(cow => { cow.die() })
-        cows = []
-
-        // ovni lo movemos al centro
-        ufo.x = 230
-        startGame()
-      },
-      3000
-    )
+    let nextLevelHTML = document.createElement('div')
+    canvas.appendChild(nextLevelHTML)
+    nextLevelHTML.classList.add('nextLevel', 'blink')
+    if (level > 2) {
+      nextLevelHTML.innerText = `You Win`
+    } else {
+      nextLevelHTML.innerText = `Next Level`
+      setTimeout(
+        function () {
+          nextLevelHTML.parentNode.removeChild(nextLevelHTML)
+          speedUfo -= 8
+          speedCow -= 500
+          cowCount = 0
+          cowCountHTML.innerText = 0
+          levelHTML.innerText = level
+  
+          cows.forEach(cow => { cow.die() })
+          cows = []
+  
+          ufo.x = 230
+          startGame()
+          
+        }, 3000)
+    } 
   }
 }
 
-//pasar de fase
+// ***START GAME***
 var speed = 80
 var speedUfo = 45
 var speedCow = 2500
-
-// ***START GAME***
 var timerCow
 var timerUfo
 var timerNewCow

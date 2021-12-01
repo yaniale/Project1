@@ -2,8 +2,8 @@
   position: relative;
   width: 800px;
   height: 640px;
-  background-image: url(../assets/cowStart.gif);
   margin: 0 auto;
+  background-image: url(../assets/cowStart.gif);
   background-size: cover;
   z-index: 1;
   display: block;
@@ -18,8 +18,7 @@ h1 {
   font-family: 'Permanent Marker', cursive;
   font-size: 70px;
   color: rgb(180, 102, 17);
-  text-shadow: 8px 8px rgb(53, 51, 59) ;
-  
+  text-shadow: 8px 8px rgb(53, 51, 59);
 }
 .startBtn {
   position: absolute;
@@ -35,11 +34,8 @@ h1 {
   cursor: pointer;
 }
 
-  
-  #canvas {
+#canvas {
   position: relative;
-  z-index: 0;
-  display: none;
   width: 800px;
   height: 640px;
   background-color: aquamarine;
@@ -47,6 +43,8 @@ h1 {
   padding: 0;
   background-image: url(../assets/granjaNoche.jpeg);
   background-size: cover;
+  z-index: 0;
+  display: none;
   border: solid black 1px;
 }
 
@@ -60,6 +58,12 @@ h1 {
   background-size: cover;
   filter: drop-shadow(2px 2px 2px #aaebbd);
 }
+
+.flip {
+  -webkit-transform:scaleX(-1);
+  transform:scaleX(-1);
+}
+
 .cow {
   position: absolute;
   top: 0;
@@ -67,7 +71,7 @@ h1 {
   height: 60px;
   background-image: url(../assets/cuteCow.png);
   background-size:cover;
-  filter: drop-shadow(2px 2px 2px #ee4a4a);
+  filter: drop-shadow(2px 2px 2px #aaebbd);
 }
 
 .deadCow {
@@ -75,7 +79,7 @@ h1 {
   top: 0;
   width: 80px;
   height: 50px;
-  background-image: url(/assets/Black_Blood_Effect.gif);
+  background-image: url(../assets/Black_Blood_Effect.gif);
   background-size:cover;
 }
 #ufo {
@@ -96,7 +100,6 @@ h1 {
 	margin: 0 auto;
   width: 100px;
 	height: 60px;
-  background-size:contain;
   filter: drop-shadow(2px 2px 2px #aaebbd);
 	text-align: right;
 	line-height: 60px;
@@ -104,6 +107,7 @@ h1 {
 	font-size: 20px;
   color: rgb(142, 228, 131);
   background-image: url(../assets/cowFace.png);
+  background-size:contain;
   background-repeat: no-repeat;
 }
 
@@ -140,7 +144,6 @@ h1 {
   background-image: url(../assets/level.png);
   background-size: contain;
   background-repeat: no-repeat;
-  
 }
 /* ***GAME OVER*** */
 .gameOver {
@@ -151,7 +154,37 @@ h1 {
   font-family: 'Permanent Marker', cursive;
   font-size: 100px;
   color: rgb(155, 25, 25);
-  text-shadow: 10px 10px rgb(11, 31, 70) ;
+  text-shadow: 8px 8px rgb(11, 31, 70) ;
+}
+
+.restartBtn {
+  position: absolute;
+  bottom: 100px;
+  left: 350px;
+  width: 150px;
+  height: 200px;
+  border: none;
+  vertical-align: text-top;
+  font-family: 'Permanent Marker', cursive;
+  font-size: 13px;
+  color: rgb(219, 231, 185);
+  background-image: url(../assets/buttonResetUFO.png);
+  background-color: transparent;
+  background-size: contain;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  text-shadow: 2px 2px rgb(51, 55, 58) ;
+}
+
+.nextLevel {
+  position:absolute;
+  top: 0px;
+  left: 163px;
+  line-height: 640px;
+  font-family: 'Permanent Marker', cursive;
+  font-size: 90px;
+  color: rgb(76, 130, 100);
+  text-shadow: 8px 8px rgb(31, 3, 99) ;
 }
 
 .blink {
@@ -165,39 +198,4 @@ h1 {
   0% { opacity: 1.0; }
   50% { opacity: 0.0; }
   100% { opacity: 1.0; }
-}
-
-.flip {
-  -webkit-transform:scaleX(-1);
-  transform:scaleX(-1);
-}
-
-.restartBtn {
-  position: absolute;
-  bottom: 100px;
-  left: 350px;
-  width: 150px;
-  height: 200px;
-  border: none;
-  background-image: url(../assets/buttonResetUFO.png);
-  background-color: transparent;
-  background-size: contain;
-  background-repeat: no-repeat;
-  cursor: pointer;
-  vertical-align: text-top;
-  font-family: 'Permanent Marker', cursive;
-  font-size: 13px;
-  color: rgb(219, 231, 185);
-  text-shadow: 2px 2px rgb(51, 55, 58) ;
-}
-
-.nextLevel {
-  position:absolute;
-  top: 0px;
-  left: 163px;
-  line-height: 640px;
-  font-family: 'Permanent Marker', cursive;
-  font-size: 90px;
-  color: rgb(76, 130, 100);
-  text-shadow: 10px 10px rgb(31, 3, 99) ;
 }
