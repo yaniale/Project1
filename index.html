@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Just+Me+Again+Down+Here&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/style.css">
+  <title>Aliens Vs Cows</title>
+</head>
+
+<body>
+  <div id="title">
+    <h1 class="blink">Aliens VS Cows</h1>
+  </div>
+   <div id="canvas">
+    <header>
+      <div id="cow-counter"></div>
+      <div id="life"></div>
+      <div id="level"></div>
+    </header>
+    <div id="farmer" class="flip"></div>
+    <div id="ufo"></div>
+  </div>
+
+  <audio id="audioFondo" loop src="assets/audio/xfiles.wav" type="audio/wav"></audio>
+  <audio id="audioCow" src="assets/audio/splash.mp3" type="audio/mp3"></audio>
+  <audio  id="audioGameOver" src="assets/audio/gameOver.mp3" type="audio/mp3"></audio>
+  <audio id="audioWin" src="assets/audio/nextLevel.mp3" type="audio/mp3" ></audio>
+  <audio id="UFO" src="assets/audio/ufo-landing.mp3" type="audio/mp3" ></audio>
+
+  <script src="script/ufo.js"></script>
+  <script src="script/cow.js"></script>
+  <script src="script/farmer.js"></script>
+  <script src="script/script.js"></script>
+
+</body>
+
+</html>
