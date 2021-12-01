@@ -9,6 +9,7 @@ const audio = {
 }
 audio.xfiles.volume = 0.1
 
+
 // **Contadores***
 var life = 1
 var lifeCounter = document.getElementById('life')
@@ -24,10 +25,10 @@ var gameRunning = false
 let musicPlaying = false
 // ***movimeintos del sprite***
 window.addEventListener('keydown', function (event) {
-  if (!musicPlaying) {
+  /*if (!musicPlaying) {
     audio.xfiles.play()
     musicPlaying = true
-  }
+  }*/
   if (event.code === 'ArrowRight') {
     farmer.moveRight()
   }
@@ -37,7 +38,7 @@ window.addEventListener('keydown', function (event) {
 })
 
   let startBtn = document.createElement('button')
-  startBtn.classList.add('restartBtn')
+  startBtn.classList.add('startBtn')
   startBtn.addEventListener('click', hideTitle)
   title.appendChild(startBtn)
 
@@ -46,6 +47,11 @@ window.addEventListener('keydown', function (event) {
     console.log(title)
     canvas.style.display = 'block'
     startGame()
+
+    if (!musicPlaying) {
+      audio.xfiles.play()
+      musicPlaying = true
+    }
   }
   
 // ***farmer recoge cows, desaparecen de la pantalla y aumenta el contador***
@@ -82,13 +88,16 @@ function showGameOver() {
   canvas.appendChild(gameOver)
   gameOver.classList.add('gameOver', 'blink')
   gameOver.innerText = 'GAME OVER'
+  let audioGameOver = document.getElementById("audioGameOver")
+  audioGameOver.volume = 0.3
+  audioGameOver.play()
   var restartHTML = document.createElement('button')
   restartHTML.setAttribute('id', 'restartbutton')
-  restartHTML.classList.add('restartBtn')
+  restartHTML.classList.add('restartBtn', 'blink')
+  restartHTML.innerText = 'PRESS to TRY AGAIN'
   canvas.appendChild(restartHTML)
   restartHTML.addEventListener('click', reset)
 }
-
 // ***game over: sprite sin vidas y dejan de aparecer cows***
 function reset() {
   var gameOver = document.getElementById('game-over')
@@ -113,12 +122,15 @@ function checkGameOver() {
 }
 
 function checkWin() {
-  if (cowCount === 2) {
+  if (cowCount === 5) {
     // stop everything
     clearInterval(timerUfo)
     clearInterval(timerNewCow)
     clearInterval(timerCow)
 
+    let audioWin = document.getElementById("audioWin")
+    audioWin.volume = 0.3
+    audioWin.play()
     // Show div with cool animation
     let youwinHTML = document.createElement('div')
     canvas.appendChild(youwinHTML)
@@ -131,7 +143,7 @@ function checkWin() {
         youwinHTML.parentNode.removeChild(youwinHTML)
 
         // Carga fase 2
-        speedUfo -= 5
+        speedUfo -= 8
         speedCow -= 500
         cowCount = 0
         cowCountHTML.innerText = 0
@@ -152,8 +164,8 @@ function checkWin() {
 
 //pasar de fase
 var speed = 80
-var speedUfo = 50
-var speedCow = 3000
+var speedUfo = 45
+var speedCow = 2500
 
 // ***START GAME***
 var timerCow
