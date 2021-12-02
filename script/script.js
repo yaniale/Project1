@@ -130,8 +130,8 @@ function checkWin() {
     let nextLevelHTML = document.createElement('div')
     canvas.appendChild(nextLevelHTML)
     nextLevelHTML.classList.add('nextLevel', 'blink')
-    if (level > 2) {
-      nextLevelHTML.innerText = `You Win`
+    if (level > 3) {
+      nextLevelHTML.innerText = `You Win!!`
     } else {
       nextLevelHTML.innerText = `Next Level`
       setTimeout(
@@ -174,7 +174,6 @@ function startGame() {
   }
 
   timerCow = setInterval(function () {
-
     cows.forEach(cow => {
       cow.moveCow()
     })

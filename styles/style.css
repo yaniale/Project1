@@ -71,7 +71,7 @@ h1 {
   height: 60px;
   background-image: url(../assets/cuteCow.png);
   background-size:cover;
-  filter: drop-shadow(2px 2px 2px #aaebbd);
+  filter: drop-shadow(3px 3px 3px #aaebbd);
 }
 
 .deadCow {
@@ -140,7 +140,8 @@ h1 {
 	font-size: large;
   font-family: sans-serif;
   font-weight: bolder;
-  color: white;
+  color: rgb(142, 228, 131);
+  filter: drop-shadow(2px 2px 2px #aaebbd);
   background-image: url(../assets/level.png);
   background-size: contain;
   background-repeat: no-repeat;
@@ -155,6 +156,7 @@ h1 {
   font-size: 100px;
   color: rgb(155, 25, 25);
   text-shadow: 8px 8px rgb(11, 31, 70) ;
+  filter: drop-shadow(2px 2px 2px #aaebbd);
 }
 
 .restartBtn {
@@ -185,6 +187,7 @@ h1 {
   font-size: 90px;
   color: rgb(76, 130, 100);
   text-shadow: 8px 8px rgb(31, 3, 99) ;
+  filter: drop-shadow(2px 2px 2px #aaebbd);
 }
 
 .blink {
